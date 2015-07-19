@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 import com.Ostermiller.util.CSVParser;
@@ -57,15 +58,21 @@ public class WindowsWorkingTime {
 			// Create an event with date and type
 			EventLogEntry theEvent = new EventLogEntry(t[0], t[2]);
 
-			if (allEventLogDays.containsKey(shortDateString) ) {
+			if (allEventLogDays.containsKey(shortDateString)) {
 				allEventLogDays.get(shortDateString).addEvent(theEvent);
 			} else {
-				allEventLogDays.put(shortDateString, new EventLogDay(shortDateString));
+				allEventLogDays.put(shortDateString, new EventLogDay(
+						shortDateString));
 			}
 
 			System.out.println(theEvent.getEventDate() + " "
 					+ theEvent.getEventType());
 
+		}
+
+		Enumeration<String> en = allEventLogDays.keys();
+		while (en.hasMoreElements()) {
+			System.out.println(en.nextElement());
 		}
 	}
 

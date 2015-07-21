@@ -62,7 +62,7 @@ public class WindowsWorkingTime {
 				allEventLogDays.get(shortDateString).addEvent(theEvent);
 			} else {
 				allEventLogDays.put(shortDateString, new EventLogDay(
-						shortDateString));
+						shortDateString, theEvent));
 			}
 
 			System.out.println(theEvent.getEventDate() + " "
@@ -72,7 +72,7 @@ public class WindowsWorkingTime {
 
 		Enumeration<String> en = allEventLogDays.keys();
 		while (en.hasMoreElements()) {
-			System.out.println(en.nextElement());
+			allEventLogDays.get(en.nextElement()).fixMissingEvents();
 		}
 	}
 

@@ -37,4 +37,12 @@ public class EventLogEntry {
 	public void setEventType(String eventTypeString) {
 		this.eventType = new EventLogEntryType(eventTypeString);
 	}
+
+	@Override
+	public String toString() {
+		return "EventLogEntry [eventDate=" + eventDate + ", eventType="
+				+ eventType + "]";
+	}
+
+
 }

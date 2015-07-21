@@ -38,4 +38,11 @@ public class EventLogEntryType {
 		this.eventLogType = Integer.parseInt(eventLogType);
 	}
 
+	public boolean isStartup() {
+		return this.eventLogType.equals(STARTUP) ? true : false;
+	}
+
+	public boolean isShutdown() {
+		return this.eventLogType.equals(SHUTDOWN) ? true : false;
+	}
 }

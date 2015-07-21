@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class EventLogDay {
 	private String eventDayDate;
 	private List<EventLogEntry> eventsOfDay;
@@ -44,16 +43,27 @@ public class EventLogDay {
 	}
 
 	public void fixMissingEvents() {
-		System.out.println( this.getEventDayDate() );
-		if ( this.eventsOfDay.get(0).getEventType().isShutdown() ) {
+		System.out.println(this.getEventDayDate());
+		if (this.eventsOfDay.get(0).getEventType().isShutdown()) {
 			System.out.println("Missing first Startup. I'll create one.");
 			try {
-				this.eventsOfDay.add(0, new EventLogEntry(this.getEventDayDate() + " 00:00:00", "12"));
+				this.eventsOfDay.add(0,
+						new EventLogEntry(this.getEventDayDate() + " 00:00:00",
+								"12"));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		System.out.println( this.eventsOfDay.toString() );
+		if (this.eventsOfDay.get(this.eventsOfDay.size() - 1).getEventType()
+				.isStartup()) {
+			System.out.println("Missing last shutdown. I'll create one.");
+			try {
+				this.eventsOfDay.add(new EventLogEntry(this.getEventDayDate()
+						+ " 24:00:00", EventLogEntryType.SHUTDOWN));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(this.eventsOfDay.toString());
 	}
 }

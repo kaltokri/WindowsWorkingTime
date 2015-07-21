@@ -15,9 +15,15 @@ public class EventLogEntry {
 	 * @param eventType
 	 * @throws ParseException
 	 */
-	public EventLogEntry(String eventDateString, String eventTypeString) throws ParseException {
+	public EventLogEntry(String eventDateString, String eventTypeString)
+			throws ParseException {
 		this.setEventDate(eventDateString);
 		this.setEventType(eventTypeString);
+	}
+
+	public EventLogEntry(String eventDateString, Integer eventType) throws ParseException {
+		this.setEventDate(eventDateString);
+		this.setEventType(eventType);
 	}
 
 	public Date getEventDate() {
@@ -38,11 +44,14 @@ public class EventLogEntry {
 		this.eventType = new EventLogEntryType(eventTypeString);
 	}
 
+	public void setEventType(Integer eventTypeString) {
+		this.eventType = new EventLogEntryType(eventTypeString);
+	}
+
 	@Override
 	public String toString() {
 		return "EventLogEntry [eventDate=" + eventDate + ", eventType="
 				+ eventType + "]";
 	}
-
 
 }

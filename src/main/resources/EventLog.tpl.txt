@@ -1,0 +1,10 @@
+******************************************
+List all start and stop event log entries
+******************************************
+#foreach( $date in $allEventLogDays.keys() )
+$datetool.format('yyyy-MM-dd',$date)
+#foreach( $event in $allEventLogDays.get($date).getEventsOfDay() )
+    $datetool.format('HH:mm:ss',$event.getEventDate()) ---> $event.getEventType()
+#end
+
+#end

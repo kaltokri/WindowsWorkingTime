@@ -1,4 +1,4 @@
-package de.kaltokri.windowsWorkingTime;
+package de.kaltokri.windowsWorkingTime.eventlog;
 
 public class EventLogEntryType {
 	public static final Integer STARTUP = 12;

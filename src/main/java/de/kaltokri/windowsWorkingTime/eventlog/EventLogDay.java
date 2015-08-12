@@ -1,32 +1,34 @@
-package de.kaltokri.windowsWorkingTime;
+package de.kaltokri.windowsWorkingTime.eventlog;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EventLogDay {
-	private String eventDayDate;
+	private Date eventDayDate;
 	private List<EventLogEntry> eventsOfDay;
 
 	/**
 	 * @param eventDayDate
 	 */
-	public EventLogDay(String eventDayDate) {
+
+	public EventLogDay(Date eventDayDate) {
 		this.eventDayDate = eventDayDate;
 		this.eventsOfDay = new ArrayList<EventLogEntry>();
 	}
 
-	public EventLogDay(String eventDayDate, EventLogEntry eventLogEntry) {
+	public EventLogDay(Date eventDayDate, EventLogEntry eventLogEntry) {
 		this.eventDayDate = eventDayDate;
 		this.eventsOfDay = new ArrayList<EventLogEntry>();
 		this.eventsOfDay.add(eventLogEntry);
 	}
 
-	public String getEventDayDate() {
+	public Date getEventDayDate() {
 		return eventDayDate;
 	}
 
-	public void setEventDayDate(String eventDayDate) {
+	public void setEventDayDate(Date eventDayDate) {
 		this.eventDayDate = eventDayDate;
 	}
 
@@ -43,27 +45,28 @@ public class EventLogDay {
 	}
 
 	public void fixMissingEvents() {
-		System.out.println(this.getEventDayDate());
+		// TODO System.out.println(this.getEventDayDate());
 		if (this.eventsOfDay.get(0).getEventType().isShutdown()) {
-			System.out.println("Missing first Startup. I'll create one.");
+			// TODO
+			// System.out.println("Missing first Startup. I'll create one.");
 			try {
 				this.eventsOfDay.add(0,
-						new EventLogEntry(this.getEventDayDate() + " 00:00:00",
-								"12"));
+						new EventLogEntry(this.getEventDayDate(), "12"));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
 		if (this.eventsOfDay.get(this.eventsOfDay.size() - 1).getEventType()
 				.isStartup()) {
-			System.out.println("Missing last shutdown. I'll create one.");
+			// TODO
+			// System.out.println("Missing last shutdown. I'll create one.");
 			try {
-				this.eventsOfDay.add(new EventLogEntry(this.getEventDayDate()
-						+ " 24:00:00", EventLogEntryType.SHUTDOWN));
+				this.eventsOfDay.add(new EventLogEntry(this.getEventDayDate(),
+						EventLogEntryType.SHUTDOWN));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(this.eventsOfDay.toString());
+		// TODO System.out.println(this.eventsOfDay.toString());
 	}
 }

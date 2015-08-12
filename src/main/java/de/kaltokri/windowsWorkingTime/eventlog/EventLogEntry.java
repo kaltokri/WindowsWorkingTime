@@ -1,4 +1,4 @@
-package de.kaltokri.windowsWorkingTime;
+package de.kaltokri.windowsWorkingTime.eventlog;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,6 +26,18 @@ public class EventLogEntry {
 		this.setEventType(eventType);
 	}
 
+	public EventLogEntry(Date eventDate, String eventTypeString)
+			throws ParseException {
+		this.setEventDate(eventDate);
+		this.setEventType(eventTypeString);
+	}
+
+	public EventLogEntry(Date eventDate, Integer eventType)
+			throws ParseException {
+		this.setEventDate(eventDate);
+		this.setEventType(eventType);
+	}
+
 	public Date getEventDate() {
 		return eventDate;
 	}
@@ -34,6 +46,10 @@ public class EventLogEntry {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
 				Locale.ENGLISH);
 		this.eventDate = format.parse(eventDateString);
+	}
+
+	public void setEventDate(Date eventDate) {
+		this.eventDate = eventDate;
 	}
 
 	public EventLogEntryType getEventType() {

@@ -17,7 +17,7 @@ import de.kaltokri.windowsworkingtime.duration.DurationDataset;
  * @author kaltokri
  *
  */
-public class windowsworkingtime {
+public class WindowsWorkingTime {
 
 	/**
 	 * @param args

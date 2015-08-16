@@ -2,7 +2,9 @@ package de.kaltokri.windowsWorkingTime.eventlog;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class EventLogDay {
@@ -60,13 +62,27 @@ public class EventLogDay {
 				.isStartup()) {
 			// TODO
 			// System.out.println("Missing last shutdown. I'll create one.");
+
+			Calendar cal = new GregorianCalendar();
+			cal.setTime(this.getEventDayDate());
+			cal.set(Calendar.HOUR_OF_DAY, 23);
+			cal.set(Calendar.MINUTE, 59);
+			cal.set(Calendar.SECOND, 59);
+			cal.set(Calendar.MILLISECOND, 0);
+			Date eventDateLastSecond = cal.getTime();
 			try {
-				this.eventsOfDay.add(new EventLogEntry(this.getEventDayDate(),
+				this.eventsOfDay.add(new EventLogEntry(eventDateLastSecond,
 						EventLogEntryType.SHUTDOWN));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
 		// TODO System.out.println(this.eventsOfDay.toString());
+
+		for (int i = 0; i < eventsOfDay.size(); i = i + 2) {
+			if (this.eventsOfDay.get(i + 1).getEventType().isStartup()) {
+				this.eventsOfDay.remove(i);
+			}
+		}
 	}
 }

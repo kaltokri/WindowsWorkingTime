@@ -1,50 +1,38 @@
 package de.kaltokri.windowsWorkingTime.duration;
 
-import java.time.LocalDate;
-import java.time.Period;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class DurationEntry {
-	private LocalDate  startDate;
-	private LocalDate  endDate;
-	private Period duration;
+	private Date startDate;
+	private Date endDate;
+	private long durationInMin;
 
 	/**
 	 * @param startDate
 	 * @param endDate
 	 */
-	public DurationEntry(LocalDate startDate, LocalDate endDate) {
+	public DurationEntry(Date startDate, Date endDate) {
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.duration = Period.between(startDate, endDate);
+		this.durationInMin = TimeUnit.MILLISECONDS.toMinutes(endDate.getTime() -startDate
+				.getTime());
 	}
 
-	public LocalDate getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
-	public LocalDate getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
+	public Long getDuration() {
+		return durationInMin;
 	}
-
-	public Period getDuration() {
-		return duration;
+	public String getDurationString() {
+		Long hours = durationInMin / 60;
+		Long minutesRest = durationInMin % 60;
+		return hours + "h " + minutesRest + "min";
 	}
-
-	public void setDuration(Period duration) {
-		if ( startDate != null && endDate != null ) {
-			this.duration = Period.between(startDate, endDate);
-		} else {
-			// Throw exception
-		}
-	}
-
-
 }

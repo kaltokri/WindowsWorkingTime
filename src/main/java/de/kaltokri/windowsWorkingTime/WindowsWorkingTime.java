@@ -10,8 +10,8 @@ import java.text.ParseException;
 import com.Ostermiller.util.CSVParser;
 import com.Ostermiller.util.LabeledCSVParser;
 
+import de.kaltokri.windowsWorkingTime.duration.DurationDataset;
 import de.kaltokri.windowsWorkingTime.eventlog.EventLogDataset;
-import de.kaltokri.windowsWorkingTime.eventlog.EventLogOutput;
 
 /**
  * @author kaltokri
@@ -47,8 +47,12 @@ public class WindowsWorkingTime {
 		eld.fixMissingEvents();
 
 		// Create a report with the result
-		EventLogOutput elo = new EventLogOutput();
-		System.out.println(elo.format(eld));
+		// EventLogOutput elo = new EventLogOutput();
+		//System.out.println(elo.format(eld));
+
+		// Create duration objects
+		DurationDataset duda = new DurationDataset(eld);
+		System.out.println(duda.toString());
 	}
 
 }

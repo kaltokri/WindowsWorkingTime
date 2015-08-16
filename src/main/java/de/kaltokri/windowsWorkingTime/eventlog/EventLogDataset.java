@@ -40,15 +40,11 @@ public class EventLogDataset {
 		}
 	}
 
-	public void fixMissingEvents () {
+	public void fixMissingEvents() {
 		Enumeration<Date> en = allEventLogDays.keys();
 
 		while (en.hasMoreElements()) {
 			allEventLogDays.get(en.nextElement()).fixMissingEvents();
-
-			// Now we convert EventLogEvent pairs into duration objects
-			// SimpleDateFormat simpleDateFormatWoy = new SimpleDateFormat("w");
-			// String WeekOfYear = simpleDateFormatWoy.format(zeitstempel);
 		}
 	}
 

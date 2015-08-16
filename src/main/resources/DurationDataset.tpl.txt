@@ -1,0 +1,14 @@
+******************************************
+List all start and stop event log entries
+******************************************
+#foreach( $cw in $durationDataset.keys() )
+CW $cw
+#foreach( $durDay in $durationDataset.get($cw).getDurationDays() )
+#foreach( $durEn in $durDay.getDurationEntriesOfDay() )
+    $datetool.format('yyyy-MM-dd',$durEn.getStartDate()) Start $datetool.format('HH:mm:ss',$durEn.getStartDate()) End $datetool.format('HH:mm:ss',$durEn.getEndDate()) Duration = $durEn.getDurationString()
+#end
+#end
+    ------------------------------------------------------
+    total: $durationDataset.get($cw).totalDurationString()
+
+#end

@@ -1,4 +1,4 @@
-package de.kaltokri.windowsWorkingTime.eventlog;
+package de.kaltokri.windowsworkingtime.eventlog;
 
 import java.text.DateFormat;
 import java.text.ParseException;

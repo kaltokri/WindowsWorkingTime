@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.kaltokri.windowsWorkingTime;
+package de.kaltokri.windowsworkingtime;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,14 +10,14 @@ import java.text.ParseException;
 import com.Ostermiller.util.CSVParser;
 import com.Ostermiller.util.LabeledCSVParser;
 
-import de.kaltokri.windowsWorkingTime.duration.DurationDataset;
-import de.kaltokri.windowsWorkingTime.eventlog.EventLogDataset;
+import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
+import de.kaltokri.windowsworkingtime.duration.DurationDataset;
 
 /**
  * @author kaltokri
  *
  */
-public class WindowsWorkingTime {
+public class windowsworkingtime {
 
 	/**
 	 * @param args

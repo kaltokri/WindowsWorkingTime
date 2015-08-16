@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>WindowsWorkingTimeMvn</name>
+	<name>windowsworkingtime</name>
 	<url>http://www.kaltokri.de</url>
 
 	<properties>

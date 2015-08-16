@@ -1,4 +1,4 @@
-package de.kaltokri.windowsWorkingTime;
+package de.kaltokri.windowsworkingtime;
 
 import java.io.File;
 import java.io.IOException;

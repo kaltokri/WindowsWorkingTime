@@ -1,4 +1,4 @@
-package de.kaltokri.windowsWorkingTime.duration;
+package de.kaltokri.windowsworkingtime.duration;
 
 import java.util.ArrayList;
 import java.util.Calendar;

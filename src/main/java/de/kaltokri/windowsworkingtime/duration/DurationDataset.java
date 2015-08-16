@@ -30,6 +30,11 @@ public class DurationDataset {
 		// sort them
 		Collections.sort(tmp);
 
+		// Get actual calendar week to ignore it later
+		Calendar cal = new GregorianCalendar();
+		cal.setTime(new Date());
+		Integer actualWeek = cal.get(java.util.Calendar.WEEK_OF_YEAR);
+
 		// Loop through each key of the EventLogDataset
 		Iterator<Date> it = tmp.iterator();
 		while (it.hasNext()) {
@@ -37,27 +42,34 @@ public class DurationDataset {
 			// Create calendar week. This is used as key in the hash map
 			// allDurationWeeks
 			Date key = it.next();
-			Calendar cal = new GregorianCalendar();
 			cal.setTime(key);
 			Integer calWeek = cal.get(java.util.Calendar.WEEK_OF_YEAR);
 
-			// EventLogEntry List from EventLogDay
-			List<EventLogEntry> eventsOfDay = eldataset.get(key)
-					.getEventsOfDay();
+			// Ignore this week because the data set is incompletely and show
+			// only the last 4 weeks.
+			if (calWeek < actualWeek && (actualWeek - calWeek < 6)) {
 
-			// Loop through each second entry (starts only) and create
-			// DurationEntry together with the matching shutdown.
-			for (int i = 0; i < eventsOfDay.size(); i = i + 2) {
-				DurationEntry durEn = new DurationEntry(eventsOfDay.get(i)
-						.getEventDate(), eventsOfDay.get(i + 1).getEventDate());
-				// System.out.println(durEn.getDuration());
+				// EventLogEntry List from EventLogDay
+				List<EventLogEntry> eventsOfDay = eldataset.get(key)
+						.getEventsOfDay();
 
-				// Add the DurationEntry to allDurationWeeks -> DurationWeek ->
-				// DurationDay
-				if (allDurationWeeks.containsKey(calWeek)) {
-					allDurationWeeks.get(calWeek).addDurationDay(durEn);;
-				} else {
-					allDurationWeeks.put(calWeek, new DurationWeek(durEn));
+				// Loop through each second entry (starts only) and create
+				// DurationEntry together with the matching shutdown.
+				for (int i = 0; i < eventsOfDay.size(); i = i + 2) {
+					DurationEntry durEn = new DurationEntry(eventsOfDay.get(i)
+							.getEventDate(), eventsOfDay.get(i + 1)
+							.getEventDate());
+					// System.out.println(durEn.getDuration());
+
+					// Add the DurationEntry to allDurationWeeks -> DurationWeek
+					// ->
+					// DurationDay
+					if (allDurationWeeks.containsKey(calWeek)) {
+						allDurationWeeks.get(calWeek).addDurationDay(durEn);
+						;
+					} else {
+						allDurationWeeks.put(calWeek, new DurationWeek(durEn));
+					}
 				}
 			}
 		}

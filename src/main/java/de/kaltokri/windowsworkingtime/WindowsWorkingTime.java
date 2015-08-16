@@ -32,13 +32,14 @@ public class WindowsWorkingTime {
 		lp.execute();
 
 		/*
-		 * Now we read and analyze the result CSV file.
+		 * Now we read and analyze the resulting CSV file.
 		 */
 		LabeledCSVParser csvParser = new LabeledCSVParser(new CSVParser(
 				new FileInputStream(
 						"C:/Program Files (x86)/Log Parser 2.2/Events.csv")));
 
 		EventLogDataset eld = new EventLogDataset();
+
 		for (String[] cells; (cells = csvParser.getLine()) != null;) {
 			eld.put(cells[0], cells[2]);
 		}
@@ -46,9 +47,9 @@ public class WindowsWorkingTime {
 		// Fix missing events
 		eld.fixMissingEvents();
 
-		// Create a report with the result
-		// EventLogOutput elo = new EventLogOutput();
-		//System.out.println(elo.format(eld));
+		// Print a report with the resulting EventLogDataset
+		// TODO: Activate output of EventLogDataset by a properties file
+		System.out.println(eld);
 
 		// Create duration objects
 		DurationDataset duda = new DurationDataset(eld);

@@ -1,6 +1,5 @@
 package de.kaltokri.windowsworkingtime.eventlog;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,10 +37,6 @@ public class EventLogDay {
 		return eventsOfDay;
 	}
 
-	public void setEventsOfDay(List<EventLogEntry> eventsOfDay) {
-		this.eventsOfDay = eventsOfDay;
-	}
-
 	public void addEvent(EventLogEntry eventToAdd) {
 		this.eventsOfDay.add(eventToAdd);
 	}
@@ -49,14 +44,8 @@ public class EventLogDay {
 	public void fixMissingEvents() {
 		// TODO System.out.println(this.getEventDayDate());
 		if (this.eventsOfDay.get(0).getEventType().isShutdown()) {
-			// TODO
-			// System.out.println("Missing first Startup. I'll create one.");
-			try {
-				this.eventsOfDay.add(0,
-						new EventLogEntry(this.getEventDayDate(), "12"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			this.eventsOfDay.add(0,
+					new EventLogEntry(this.getEventDayDate(), 12));
 		}
 		if (this.eventsOfDay.get(this.eventsOfDay.size() - 1).getEventType()
 				.isStartup()) {
@@ -70,15 +59,12 @@ public class EventLogDay {
 			cal.set(Calendar.SECOND, 59);
 			cal.set(Calendar.MILLISECOND, 0);
 			Date eventDateLastSecond = cal.getTime();
-			try {
-				this.eventsOfDay.add(new EventLogEntry(eventDateLastSecond,
-						EventLogEntryType.SHUTDOWN));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			this.eventsOfDay.add(new EventLogEntry(eventDateLastSecond,
+					EventLogEntryType.SHUTDOWN));
 		}
 		// TODO System.out.println(this.eventsOfDay.toString());
 
+		// Fix two startups behind each other. Delete the first one.
 		for (int i = 0; i < eventsOfDay.size(); i = i + 2) {
 			if (this.eventsOfDay.get(i + 1).getEventType().isStartup()) {
 				this.eventsOfDay.remove(i);

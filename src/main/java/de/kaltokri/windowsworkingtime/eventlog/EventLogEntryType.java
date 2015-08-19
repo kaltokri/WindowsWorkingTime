@@ -10,11 +10,11 @@ public class EventLogEntryType {
 	 * @param eventLogType
 	 */
 	public EventLogEntryType(Integer eventLogType) {
-		this.eventLogType = eventLogType;
+		this.setEventLogType(eventLogType);
 	}
 
 	public EventLogEntryType(String eventLogType) {
-		this.eventLogType = Integer.parseInt(eventLogType);
+		this.setEventLogType(eventLogType);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class EventLogEntryType {
 		this.eventLogType = eventLogType;
 	}
 
-	public void setEventLogType(String eventLogType) {
+	public void setEventLogType(String eventLogType) throws NumberFormatException {
 		this.eventLogType = Integer.parseInt(eventLogType);
 	}
 

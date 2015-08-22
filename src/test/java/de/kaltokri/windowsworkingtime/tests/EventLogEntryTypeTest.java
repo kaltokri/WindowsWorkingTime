@@ -1,4 +1,4 @@
-package windowsworkingtime;
+package de.kaltokri.windowsworkingtime.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

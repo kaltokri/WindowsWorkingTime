@@ -23,20 +23,8 @@ public class DurationWeek {
 		return weekOfYear;
 	}
 
-	public void setWeekOfYear(Integer weekOfYear) {
-		this.weekOfYear = weekOfYear;
-	}
-
 	public List<DurationDay> getDurationDays() {
 		return durationDays;
-	}
-
-	public void setDurationDays(List<DurationDay> durationDays) {
-		this.durationDays = durationDays;
-	}
-
-	public void addDurationDay(DurationDay duraDay) {
-		this.durationDays.add(duraDay);
 	}
 
 	public void addDurationDay(DurationEntry durEntry) {

@@ -1,4 +1,4 @@
-package windowsworkingtime;
+package de.kaltokri.windowsworkingtime.tests;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

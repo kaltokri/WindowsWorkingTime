@@ -8,9 +8,9 @@ public class LogParser {
 
 	private String workingDirectory = "C:/Program Files (x86)/Log Parser 2.2";
 	private String command = workingDirectory + "/LogParser.exe";
-	private String cvsFileName = "Events.csv";
+	private String csvFileName = "Events.csv";
 	private String parameters = "\"SELECT TimeGenerated, SourceName, EventID INTO "
-			+ cvsFileName + " FROM System WHERE EventID In (12;13)\"";
+			+ csvFileName + " FROM System WHERE EventID In (12;13)\"";
 
 	public void execute() throws IOException {
 		System.out.println("******************************************");
@@ -30,5 +30,9 @@ public class LogParser {
 			System.out.println(s);
 		}
 		is.close();
+	}
+
+	public String getResultFilepath() {
+		return this.workingDirectory + "/" + this.csvFileName;
 	}
 }

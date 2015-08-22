@@ -25,18 +25,20 @@ public class WindowsWorkingTime {
 	 * @throws ParseException
 	 */
 	public static void main(String[] args) throws IOException, ParseException {
+		String resultFilePath;
+
 		/*
 		 * Execute external LogParser application
 		 */
 		LogParser lp = new LogParser();
 		lp.execute();
+		resultFilePath = lp.getResultFilepath();
 
 		/*
 		 * Now we read and analyze the resulting CSV file.
 		 */
 		LabeledCSVParser csvParser = new LabeledCSVParser(new CSVParser(
-				new FileInputStream(
-						"C:/Program Files (x86)/Log Parser 2.2/Events.csv")));
+				new FileInputStream(resultFilePath)));
 
 		EventLogDataset eld = new EventLogDataset();
 

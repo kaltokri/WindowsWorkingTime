@@ -66,7 +66,6 @@ public class DurationDataset {
 					// DurationDay
 					if (allDurationWeeks.containsKey(calWeek)) {
 						allDurationWeeks.get(calWeek).addDurationDay(durEn);
-						;
 					} else {
 						allDurationWeeks.put(calWeek, new DurationWeek(durEn));
 					}
@@ -75,12 +74,8 @@ public class DurationDataset {
 		}
 	}
 
-	public boolean containsKey(String key) {
+	public boolean containsKey(Integer key) {
 		return this.allDurationWeeks.containsKey(key);
-	}
-
-	public void put(Integer key, DurationWeek value) {
-		this.allDurationWeeks.put(key, value);
 	}
 
 	public DurationWeek get(Integer key) {

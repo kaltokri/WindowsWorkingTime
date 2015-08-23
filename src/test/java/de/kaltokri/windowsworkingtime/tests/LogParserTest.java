@@ -1,11 +1,11 @@
 package de.kaltokri.windowsworkingtime.tests;
 
-import java.io.IOException;
+import de.kaltokri.windowsworkingtime.LogParser;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import de.kaltokri.windowsworkingtime.LogParser;
+import java.io.IOException;
 
 @Test
 public class LogParserTest {

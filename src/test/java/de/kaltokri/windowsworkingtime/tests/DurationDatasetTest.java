@@ -1,15 +1,15 @@
 package de.kaltokri.windowsworkingtime.tests;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.ParseException;
+import de.kaltokri.windowsworkingtime.duration.DurationDataset;
+import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.testng.annotations.Test;
 
-import de.kaltokri.windowsworkingtime.duration.DurationDataset;
-import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.ParseException;
 
 @Test
 public class DurationDatasetTest {

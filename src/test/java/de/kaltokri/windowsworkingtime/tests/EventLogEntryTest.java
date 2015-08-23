@@ -1,15 +1,15 @@
 package de.kaltokri.windowsworkingtime.tests;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import de.kaltokri.windowsworkingtime.eventlog.EventLogEntry;
+import de.kaltokri.windowsworkingtime.eventlog.EventLogEntryType;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import de.kaltokri.windowsworkingtime.eventlog.EventLogEntry;
-import de.kaltokri.windowsworkingtime.eventlog.EventLogEntryType;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Test
 public class EventLogEntryTest {

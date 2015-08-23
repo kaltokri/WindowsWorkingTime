@@ -1,17 +1,17 @@
 package de.kaltokri.windowsworkingtime.tests;
 
+import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
+
+import org.apache.commons.io.IOUtils;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import org.apache.commons.io.IOUtils;
-
-import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
 
 @Test
 public class EventLogDatasetTest {

@@ -1,14 +1,14 @@
 package de.kaltokri.windowsworkingtime.tests;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import de.kaltokri.windowsworkingtime.duration.DurationEntry;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import de.kaltokri.windowsworkingtime.duration.DurationEntry;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Test
 public class DurationEntryTest {

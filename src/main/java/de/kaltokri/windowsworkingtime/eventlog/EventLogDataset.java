@@ -1,5 +1,10 @@
 package de.kaltokri.windowsworkingtime.eventlog;
 
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
+import org.apache.velocity.tools.generic.DateTool;
+import org.apache.velocity.tools.generic.DisplayTool;
+
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
@@ -10,11 +15,6 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
-
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
-import org.apache.velocity.tools.generic.DateTool;
-import org.apache.velocity.tools.generic.DisplayTool;
 
 public class EventLogDataset {
   private Hashtable<Date, EventLogDay> allEventLogDays = new Hashtable<Date, EventLogDay>();

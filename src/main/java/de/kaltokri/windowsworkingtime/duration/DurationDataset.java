@@ -1,5 +1,13 @@
 package de.kaltokri.windowsworkingtime.duration;
 
+import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
+import de.kaltokri.windowsworkingtime.eventlog.EventLogEntry;
+
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
+import org.apache.velocity.tools.generic.DateTool;
+import org.apache.velocity.tools.generic.DisplayTool;
+
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
@@ -10,14 +18,6 @@ import java.util.GregorianCalendar;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
-import org.apache.velocity.tools.generic.DateTool;
-import org.apache.velocity.tools.generic.DisplayTool;
-
-import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
-import de.kaltokri.windowsworkingtime.eventlog.EventLogEntry;
 
 public class DurationDataset {
   private Hashtable<Integer, DurationWeek> allDurationWeeks = new Hashtable<Integer, DurationWeek>();

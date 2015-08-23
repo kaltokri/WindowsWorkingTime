@@ -1,9 +1,9 @@
 package de.kaltokri.windowsworkingtime.tests;
 
+import de.kaltokri.windowsworkingtime.eventlog.EventLogEntryType;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import de.kaltokri.windowsworkingtime.eventlog.EventLogEntryType;
 
 public class EventLogEntryTypeTest {
 

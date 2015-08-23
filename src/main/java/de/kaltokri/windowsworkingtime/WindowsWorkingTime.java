@@ -1,28 +1,37 @@
-/**
- *
- */
 package de.kaltokri.windowsworkingtime;
+
+import com.Ostermiller.util.CSVParser;
+import com.Ostermiller.util.LabeledCSVParser;
+
+import de.kaltokri.windowsworkingtime.duration.DurationDataset;
+import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 
-import com.Ostermiller.util.CSVParser;
-import com.Ostermiller.util.LabeledCSVParser;
-
-import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
-import de.kaltokri.windowsworkingtime.duration.DurationDataset;
-
 /**
+ * WindowsWorkingTime creates a report of all Windows startup and shutdown
+ * registry events. It calculates the uptime for each day and print it as a
+ * summary to console.
+ *
  * @author kaltokri
  *
  */
 public class WindowsWorkingTime {
 
   /**
+   * This is the main class which runs the Log Parser, read the result file,
+   * create EventLogDatasets, DurationDatasets and the output to console.
+   *
    * @param args
+   *          No command line arguments are supported
    * @throws IOException
+   *           Can occur if result file of Log Parser is not readable or doesn't
+   *           exist
    * @throws ParseException
+   *           Occurs if Date string in result file of Log Parser has wrong
+   *           format
    */
   public static void main(String[] args) throws IOException, ParseException {
     String resultFilePath;

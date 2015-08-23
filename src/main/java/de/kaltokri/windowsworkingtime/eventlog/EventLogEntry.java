@@ -9,10 +9,12 @@ public class EventLogEntry {
 
   /**
    * @param eventDate
-   * @param eventType
+   *          Date of the EventLogEntry.
+   * @param eventTypeString
+   *          Type of the EventLogEntry.
    * @throws ParseException
+   *           eventTypeString will be parsed to get an Integer value.
    */
-
   public EventLogEntry(Date eventDate, String eventTypeString)
       throws ParseException {
     this.setEventDate(eventDate);

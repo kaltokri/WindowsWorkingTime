@@ -20,8 +20,14 @@ import java.util.Iterator;
 import java.util.List;
 
 public class DurationDataset {
-  private Hashtable<Integer, DurationWeek> allDurationWeeks = new Hashtable<Integer, DurationWeek>();
+  private Hashtable<Integer, DurationWeek> allDurationWeeks =
+      new Hashtable<Integer, DurationWeek>();
 
+  /**
+   * @param eldataset
+   *          Needs a complete EventLogDataset and convert it to a
+   *          DurationDataset.
+   */
   public DurationDataset(EventLogDataset eldataset) {
 
     // Get all keys of the EventLogDataset (= Dates)
@@ -55,8 +61,9 @@ public class DurationDataset {
         // Loop through each second entry (starts only) and create
         // DurationEntry together with the matching shutdown.
         for (int i = 0; i < eventsOfDay.size(); i = i + 2) {
-          DurationEntry durEn = new DurationEntry(eventsOfDay.get(i)
-              .getEventDate(), eventsOfDay.get(i + 1).getEventDate());
+          DurationEntry durEn =
+              new DurationEntry(eventsOfDay.get(i).getEventDate(), eventsOfDay
+                  .get(i + 1).getEventDate());
           // System.out.println(durEn.getDuration());
 
           // Add the DurationEntry to allDurationWeeks -> DurationWeek
@@ -80,6 +87,9 @@ public class DurationDataset {
     return this.allDurationWeeks.get(key);
   }
 
+  /**
+   * @return Returns a Integer List of all DurationWeek keys.
+   */
   public List<Integer> keys() {
     List<Integer> list = Collections.list(allDurationWeeks.keys());
     Collections.sort(list);
@@ -87,14 +97,19 @@ public class DurationDataset {
     return list;
   }
 
+  /**
+   * This toString function uses Apache velocity to load a template, fill in all
+   * DurationWeek's and print it to console.
+   */
   public String toString() {
-    Reader reader = new InputStreamReader(getClass().getClassLoader()
-        .getResourceAsStream("DurationDataset.tpl.txt"));
     VelocityContext context = new VelocityContext();
     context.put("durationDataset", this);
     context.put("displaytool", new DisplayTool());
     context.put("datetool", new DateTool());
     StringWriter writer = new StringWriter();
+    Reader reader =
+        new InputStreamReader(getClass().getClassLoader().getResourceAsStream(
+            "DurationDataset.tpl.txt"));
     Velocity.evaluate(context, writer, "", reader);
     return writer.toString();
   }

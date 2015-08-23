@@ -11,14 +11,26 @@ public class EventLogDay {
   private List<EventLogEntry> eventsOfDay;
 
   /**
+   * Constructor to create a new EventLogDay object with a given Date. It will
+   * create an empty List of EventLogEntry's
+   *
    * @param eventDayDate
+   *          Date object which is used to identify the EventLogDay.
    */
-
   public EventLogDay(Date eventDayDate) {
     this.eventDayDate = eventDayDate;
     this.eventsOfDay = new ArrayList<EventLogEntry>();
   }
 
+  /**
+   * Constructor to create a EventLogDay with a special Date and a EventLogEntry
+   * object.
+   *
+   * @param eventDayDate
+   *          Date object where time is set to 00:00:00
+   * @param eventLogEntry
+   *          EventLogEntry which should be added to the EventLogDay
+   */
   public EventLogDay(Date eventDayDate, EventLogEntry eventLogEntry) {
     this.eventDayDate = eventDayDate;
     this.eventsOfDay = new ArrayList<EventLogEntry>();
@@ -41,6 +53,11 @@ public class EventLogDay {
     this.eventsOfDay.add(eventToAdd);
   }
 
+  /**
+   * This function fixes the following problems in the EventLogDay object: A day
+   * starts with a shutdown, a day ends with a startup and two startups behind
+   * each other.
+   */
   public void fixMissingEvents() {
     // TODO System.out.println(this.getEventDayDate());
     if (this.eventsOfDay.get(0).getEventType().isShutdown()) {

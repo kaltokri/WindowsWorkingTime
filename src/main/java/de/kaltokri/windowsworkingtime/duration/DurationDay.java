@@ -10,6 +10,10 @@ public class DurationDay {
   private Date durationDayDate;
   private List<DurationEntry> durationEntriesOfDay;
 
+  /**
+   * @param durationEntry
+   *          Needs a DurationEntry object to create a DurationDay.
+   */
   public DurationDay(DurationEntry durationEntry) {
     this.durationEntriesOfDay = new ArrayList<DurationEntry>();
     this.durationEntriesOfDay.add(durationEntry);

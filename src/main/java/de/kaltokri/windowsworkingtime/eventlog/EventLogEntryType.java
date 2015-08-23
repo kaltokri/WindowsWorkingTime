@@ -6,9 +6,6 @@ public class EventLogEntryType {
 
   private Integer eventLogType;
 
-  /**
-   * @param eventLogType
-   */
   public EventLogEntryType(Integer eventLogType) {
     this.setEventLogType(eventLogType);
   }

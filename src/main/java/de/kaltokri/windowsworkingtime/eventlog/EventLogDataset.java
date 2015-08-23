@@ -19,6 +19,16 @@ import java.util.Hashtable;
 public class EventLogDataset {
   private Hashtable<Date, EventLogDay> allEventLogDays = new Hashtable<Date, EventLogDay>();
 
+  /**
+   * @param eventDateString
+   *          A formated String (yyyy-MM-dd HH:mm:ss) which can be parsed to a
+   *          Date object.
+   * @param eventTypeString
+   *          Windows startup ("12") or shutdown ("13").
+   * @throws ParseException
+   *           Will be thrown if the date String cannot be parsed to a Date
+   *           object.
+   */
   public void put(String eventDateString, String eventTypeString)
       throws ParseException {
     SimpleDateFormat eventDateStringFormat = new SimpleDateFormat(
@@ -48,6 +58,10 @@ public class EventLogDataset {
     }
   }
 
+  /**
+   * Call the fixMissingEvents on each EventLogDay object included in this
+   * EventLogDataset.
+   */
   public void fixMissingEvents() {
     Enumeration<Date> en = allEventLogDays.keys();
 
@@ -64,14 +78,18 @@ public class EventLogDataset {
     return allEventLogDays.get(key);
   }
 
+  /**
+   * This toString function uses Apache velocity to load a template, fill in all
+   * EventLogDay's and print it to stdout.
+   */
   public String toString() {
-    Reader reader = new InputStreamReader(getClass().getClassLoader()
-        .getResourceAsStream("EventLogDataset.tpl.txt"));
     VelocityContext context = new VelocityContext();
     context.put("allEventLogDays", allEventLogDays);
     context.put("displaytool", new DisplayTool());
     context.put("datetool", new DateTool());
     StringWriter writer = new StringWriter();
+    Reader reader = new InputStreamReader(getClass().getClassLoader()
+        .getResourceAsStream("EventLogDataset.tpl.txt"));
     Velocity.evaluate(context, writer, "", reader);
     return writer.toString();
   }

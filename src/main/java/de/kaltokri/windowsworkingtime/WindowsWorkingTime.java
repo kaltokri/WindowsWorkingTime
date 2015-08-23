@@ -19,43 +19,43 @@ import de.kaltokri.windowsworkingtime.duration.DurationDataset;
  */
 public class WindowsWorkingTime {
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 * @throws ParseException
-	 */
-	public static void main(String[] args) throws IOException, ParseException {
-		String resultFilePath;
+  /**
+   * @param args
+   * @throws IOException
+   * @throws ParseException
+   */
+  public static void main(String[] args) throws IOException, ParseException {
+    String resultFilePath;
 
-		/*
-		 * Execute external LogParser application
-		 */
-		LogParser lp = new LogParser();
-		lp.execute();
-		resultFilePath = lp.getResultFilepath();
+    /*
+     * Execute external LogParser application
+     */
+    LogParser lp = new LogParser();
+    lp.execute();
+    resultFilePath = lp.getResultFilepath();
 
-		/*
-		 * Now we read and analyze the resulting CSV file.
-		 */
-		LabeledCSVParser csvParser = new LabeledCSVParser(new CSVParser(
-				new FileInputStream(resultFilePath)));
+    /*
+     * Now we read and analyze the resulting CSV file.
+     */
+    LabeledCSVParser csvParser = new LabeledCSVParser(new CSVParser(
+        new FileInputStream(resultFilePath)));
 
-		EventLogDataset eld = new EventLogDataset();
+    EventLogDataset eld = new EventLogDataset();
 
-		for (String[] cells; (cells = csvParser.getLine()) != null;) {
-			eld.put(cells[0], cells[2]);
-		}
+    for (String[] cells; (cells = csvParser.getLine()) != null;) {
+      eld.put(cells[0], cells[2]);
+    }
 
-		// Fix missing events
-		eld.fixMissingEvents();
+    // Fix missing events
+    eld.fixMissingEvents();
 
-		// Print a report with the resulting EventLogDataset
-		// TODO: Activate output of EventLogDataset by a properties file
-		System.out.println(eld);
+    // Print a report with the resulting EventLogDataset
+    // TODO: Activate output of EventLogDataset by a properties file
+    System.out.println(eld);
 
-		// Create duration objects
-		DurationDataset duda = new DurationDataset(eld);
-		System.out.println(duda.toString());
-	}
+    // Create duration objects
+    DurationDataset duda = new DurationDataset(eld);
+    System.out.println(duda.toString());
+  }
 
 }

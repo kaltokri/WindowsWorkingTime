@@ -28,7 +28,7 @@ public class DurationDay {
   }
 
   public Date getDurationDayDate() {
-    return durationDayDate;
+    return new Date(durationDayDate.getTime());
   }
 
   public List<DurationEntry> getDurationEntriesOfDay() {

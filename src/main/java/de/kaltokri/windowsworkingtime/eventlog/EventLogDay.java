@@ -18,7 +18,7 @@ public class EventLogDay {
    *          Date object which is used to identify the EventLogDay.
    */
   public EventLogDay(Date eventDayDate) {
-    this.eventDayDate = eventDayDate;
+    this.eventDayDate = new Date(eventDayDate.getTime());
     this.eventsOfDay = new ArrayList<EventLogEntry>();
   }
 
@@ -32,17 +32,17 @@ public class EventLogDay {
    *          EventLogEntry which should be added to the EventLogDay
    */
   public EventLogDay(Date eventDayDate, EventLogEntry eventLogEntry) {
-    this.eventDayDate = eventDayDate;
+    this.eventDayDate = new Date(eventDayDate.getTime());
     this.eventsOfDay = new ArrayList<EventLogEntry>();
     this.eventsOfDay.add(eventLogEntry);
   }
 
   public Date getEventDayDate() {
-    return eventDayDate;
+    return new Date(eventDayDate.getTime());
   }
 
   public void setEventDayDate(Date eventDayDate) {
-    this.eventDayDate = eventDayDate;
+    this.eventDayDate = new Date(eventDayDate.getTime());
   }
 
   public List<EventLogEntry> getEventsOfDay() {

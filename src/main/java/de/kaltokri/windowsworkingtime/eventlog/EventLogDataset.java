@@ -8,6 +8,7 @@ import org.apache.velocity.tools.generic.DisplayTool;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -88,9 +89,14 @@ public class EventLogDataset {
     context.put("displaytool", new DisplayTool());
     context.put("datetool", new DateTool());
     StringWriter writer = new StringWriter();
-    Reader reader = new InputStreamReader(getClass().getClassLoader()
-        .getResourceAsStream("EventLogDataset.tpl.txt"));
-    Velocity.evaluate(context, writer, "", reader);
+    Reader reader;
+    try {
+      reader = new InputStreamReader(getClass().getClassLoader()
+          .getResourceAsStream("EventLogDataset.tpl.txt"),"UTF-8");
+      Velocity.evaluate(context, writer, "", reader);
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
     return writer.toString();
   }
 }

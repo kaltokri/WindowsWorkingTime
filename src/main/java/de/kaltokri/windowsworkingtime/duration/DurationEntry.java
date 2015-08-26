@@ -18,18 +18,18 @@ public class DurationEntry {
    *          Date of Windows shutdown
    */
   public DurationEntry(Date startDate, Date endDate) {
-    this.startDate = startDate;
-    this.endDate = endDate;
+    this.startDate = new Date(startDate.getTime());
+    this.endDate = new Date(endDate.getTime());
     this.durationInMin = TimeUnit.MILLISECONDS.toMinutes(endDate.getTime()
         - startDate.getTime());
   }
 
   public Date getStartDate() {
-    return startDate;
+    return new Date(startDate.getTime());
   }
 
   public Date getEndDate() {
-    return endDate;
+    return new Date(endDate.getTime());
   }
 
   public Long getDuration() {

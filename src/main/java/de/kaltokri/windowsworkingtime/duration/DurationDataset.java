@@ -11,6 +11,7 @@ import org.apache.velocity.tools.generic.DisplayTool;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -107,10 +108,14 @@ public class DurationDataset {
     context.put("displaytool", new DisplayTool());
     context.put("datetool", new DateTool());
     StringWriter writer = new StringWriter();
-    Reader reader =
-        new InputStreamReader(getClass().getClassLoader().getResourceAsStream(
-            "DurationDataset.tpl.txt"));
-    Velocity.evaluate(context, writer, "", reader);
+    Reader reader;
+    try {
+      reader = new InputStreamReader(getClass().getClassLoader().getResourceAsStream(
+          "DurationDataset.tpl.txt"), "UTF-8");
+      Velocity.evaluate(context, writer, "", reader);
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
     return writer.toString();
   }
 }

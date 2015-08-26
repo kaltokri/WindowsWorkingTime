@@ -27,11 +27,11 @@ public class EventLogEntry {
   }
 
   public Date getEventDate() {
-    return eventDate;
+    return new Date(eventDate.getTime());
   }
 
   public void setEventDate(Date eventDate) {
-    this.eventDate = eventDate;
+    this.eventDate = new Date(eventDate.getTime());
   }
 
   public EventLogEntryType getEventType() {

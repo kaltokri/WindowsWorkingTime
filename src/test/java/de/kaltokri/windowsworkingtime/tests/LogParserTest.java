@@ -9,10 +9,14 @@ import java.io.IOException;
 
 @Test
 public class LogParserTest {
-	public void executeTest() throws IOException {
-		LogParser lp = new LogParser();
-		lp.execute();
-		Assert.assertEquals(lp.getResultFilepath(),
-				"C:/Program Files (x86)/Log Parser 2.2/Events.csv");
-	}
+  /**
+   * @throws IOException
+   *           If Events.csv cannot be loaded.
+   */
+  public void executeTest() throws IOException {
+    LogParser lp = new LogParser();
+    lp.execute();
+    Assert.assertEquals(lp.getResultFilepath(),
+        "C:/Program Files (x86)/Log Parser 2.2/Events.csv");
+  }
 }

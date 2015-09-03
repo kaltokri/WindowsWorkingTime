@@ -46,8 +46,8 @@ public class WindowsWorkingTime {
     /*
      * Now we read and analyze the resulting CSV file.
      */
-    LabeledCSVParser csvParser = new LabeledCSVParser(new CSVParser(
-        new FileInputStream(resultFilePath)));
+    LabeledCSVParser csvParser =
+        new LabeledCSVParser(new CSVParser(new FileInputStream(resultFilePath)));
 
     EventLogDataset eld = new EventLogDataset();
 
@@ -63,7 +63,7 @@ public class WindowsWorkingTime {
     System.out.println(eld);
 
     // Create duration objects
-    DurationDataset duda = new DurationDataset(eld);
+    DurationDataset duda = new DurationDataset(eld, 6);
     System.out.println(duda.toString());
   }
 

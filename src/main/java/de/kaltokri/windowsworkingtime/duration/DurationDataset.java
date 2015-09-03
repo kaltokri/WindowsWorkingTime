@@ -28,8 +28,9 @@ public class DurationDataset {
    * @param eldataset
    *          Needs a complete EventLogDataset and convert it to a
    *          DurationDataset.
+   * @param limitWeeks limits the amount of weeks to show.
    */
-  public DurationDataset(EventLogDataset eldataset) {
+  public DurationDataset(EventLogDataset eldataset, Integer limitWeeks) {
 
     // Get all keys of the EventLogDataset (= Dates)
     List<Date> tmp = Collections.list(eldataset.keys());
@@ -54,7 +55,7 @@ public class DurationDataset {
 
       // Ignore this week because the data set is incompletely and show
       // only the last 4 weeks.
-      if (calWeek < actualWeek && (actualWeek - calWeek < 6)) {
+      if (calWeek < actualWeek && (actualWeek - calWeek < limitWeeks)) {
 
         // EventLogEntry List from EventLogDay
         List<EventLogEntry> eventsOfDay = eldataset.get(key).getEventsOfDay();

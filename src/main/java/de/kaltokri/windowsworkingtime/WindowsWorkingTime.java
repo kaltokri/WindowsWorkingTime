@@ -43,16 +43,12 @@ public class WindowsWorkingTime {
     String resultFilePath;
     logger.info("Starting WindowsWorkingTime application.");
 
-    /*
-     * Execute external LogParser application
-     */
+    // Execute external LogParser application
     LogParser lp = new LogParser();
     lp.execute();
     resultFilePath = lp.getResultFilepath();
 
-    /*
-     * Now we read and analyze the resulting CSV file.
-     */
+    // Now we read and analyze the resulting CSV file.
     LabeledCSVParser csvParser =
         new LabeledCSVParser(new CSVParser(new FileInputStream(resultFilePath)));
 

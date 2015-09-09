@@ -1,5 +1,5 @@
 ******************************************
-List all start and stop event log entries
+List all DurationDataset entries
 ******************************************
 #foreach( $cw in $durationDataset.keys() )
 CW $cw

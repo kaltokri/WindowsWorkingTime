@@ -5,6 +5,10 @@ import com.Ostermiller.util.LabeledCSVParser;
 
 import de.kaltokri.windowsworkingtime.duration.DurationDataset;
 import de.kaltokri.windowsworkingtime.eventlog.EventLogDataset;
+import de.kaltokri.windowsworkingtime.eventlog.EventLogDay;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,7 +38,10 @@ public class WindowsWorkingTime {
    *           format
    */
   public static void main(String[] args) throws IOException, ParseException {
+    final Logger logger = LoggerFactory.getLogger(EventLogDay.class);
+
     String resultFilePath;
+    logger.info("Starting WindowsWorkingTime application.");
 
     /*
      * Execute external LogParser application
@@ -60,7 +67,7 @@ public class WindowsWorkingTime {
 
     // Print a report with the resulting EventLogDataset
     // TODO: Activate output of EventLogDataset by a properties file
-    System.out.println(eld);
+    logger.debug(eld.toString());
 
     // Create duration objects
     DurationDataset duda = new DurationDataset(eld, 6);

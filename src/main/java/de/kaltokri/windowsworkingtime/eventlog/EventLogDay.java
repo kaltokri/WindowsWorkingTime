@@ -1,5 +1,8 @@
 package de.kaltokri.windowsworkingtime.eventlog;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,6 +12,8 @@ import java.util.List;
 public class EventLogDay {
   private Date eventDayDate;
   private List<EventLogEntry> eventsOfDay;
+  private static final Logger logger = LoggerFactory
+      .getLogger(EventLogDay.class);
 
   /**
    * Constructor to create a new EventLogDay object with a given Date. It will
@@ -65,8 +70,7 @@ public class EventLogDay {
     }
     if (this.eventsOfDay.get(this.eventsOfDay.size() - 1).getEventType()
         .isStartup()) {
-      // TODO
-      // System.out.println("Missing last shutdown. I'll create one.");
+      logger.info("Fixing missing last shutdown. I'll create one.");
 
       Calendar cal = new GregorianCalendar();
       cal.setTime(this.getEventDayDate());
@@ -78,11 +82,12 @@ public class EventLogDay {
       this.eventsOfDay.add(new EventLogEntry(eventDateLastSecond,
           EventLogEntryType.SHUTDOWN));
     }
-    // TODO System.out.println(this.eventsOfDay.toString());
 
     // Fix two startups behind each other. Delete the first one.
     for (int i = 0; i < eventsOfDay.size(); i = i + 2) {
       if (this.eventsOfDay.get(i + 1).getEventType().isStartup()) {
+        logger.info("Fixing two startups behind each other. "
+            + "Delete the first one.");
         this.eventsOfDay.remove(i);
       }
     }
